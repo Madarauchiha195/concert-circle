@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -77,6 +77,24 @@ const navItems = [
 export default function ConcertsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    }
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
 
   const filteredConcerts = concerts.filter((concert) => {
     const matchesSearch =
@@ -137,15 +155,41 @@ export default function ConcertsPage() {
                 </Button>
               </div>
 
-              {/* Mobile – simple icon */}
-              <Button
-                variant="ghost"
-                size="sm"
-                aria-label="Menu"
-                className="md:hidden text-white hover:bg-gray-800 p-2"
-              >
-                <Menu className="w-5 h-5" />
-              </Button>
+              {/* Mobile Hamburger & Dropdown */}
+              <div className="md:hidden relative" ref={mobileMenuRef}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  aria-label="Menu"
+                  className="text-white hover:bg-gray-800 p-2"
+                  onClick={() => setMobileMenuOpen((open) => !open)}
+                >
+                  <Menu className="w-5 h-5" />
+                </Button>
+                {mobileMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-44 rounded-lg bg-gray-900 border border-gray-700 shadow-lg z-50 animate-fade-in">
+                    <div className="flex flex-col py-2">
+                      {navItems.map((item, index) => (
+                        <Link
+                          key={index}
+                          href={item.href}
+                          className="px-4 py-2 text-white hover:bg-gray-800 rounded transition-colors text-base"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                      <div className="border-t border-gray-700 my-2" />
+                      <Link href="/login" className="px-4 py-2 text-white hover:bg-gray-800 rounded transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+                        Login
+                      </Link>
+                      <Link href="/register" className="px-4 py-2 text-white hover:bg-gray-800 rounded transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+                        Register
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </nav>
@@ -208,9 +252,9 @@ export default function ConcertsPage() {
         </section>
 
         {/* Upcoming Event Highlight */}
-        <section className="py-16 px-4 bg-black/50">
+        <section className="py-16 px-4 ">
           <div className="container mx-auto">
-            <div className="bg-gray-900/50 rounded-3xl p-8 border border-gray-800">
+            <div className="bg-gray-900/25 rounded-3xl p-8 border border-gray-800">
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div>
                   <Badge className="bg-purple-600/20 text-purple-300 border-purple-500/30 mb-4">UPCOMING EVENT</Badge>
