@@ -8,6 +8,7 @@ import Beams from "@/components/Beams"
 import Masonry from "@/components/Masonry"
 import Stack from "@/components/Stack"
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards"
+import { useState, useRef, useEffect } from "react"
 
 const testimonials = [
   {
@@ -81,6 +82,25 @@ const navItems = [
 ]
 
 export default function LandingPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    }
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
+
   const concertCards = [
     {
       id: 1,
@@ -162,15 +182,41 @@ export default function LandingPage() {
                 </Button>
               </div>
 
-              {/* Mobile - simple icon (no slide-out menu) */}
-              <Button
-                variant="ghost"
-                size="sm"
-                aria-label="Menu"
-                className="md:hidden text-white hover:bg-gray-800 p-2"
-              >
-                <Menu className="w-5 h-5" />
-              </Button>
+              {/* Mobile Hamburger & Dropdown */}
+              <div className="md:hidden relative" ref={mobileMenuRef}>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  aria-label="Menu"
+                  className="text-white hover:bg-gray-800 p-2"
+                  onClick={() => setMobileMenuOpen((open) => !open)}
+                >
+                  <Menu className="w-5 h-5" />
+                </Button>
+                {mobileMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-44 rounded-lg bg-gray-900 border border-gray-700 shadow-lg z-50 animate-fade-in">
+                    <div className="flex flex-col py-2">
+                      {navItems.map((item, index) => (
+                        <Link
+                          key={index}
+                          href={item.href}
+                          className="px-4 py-2 text-white hover:bg-gray-800 rounded transition-colors text-base"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                      <div className="border-t border-gray-700 my-2" />
+                      <Link href="/login" className="px-4 py-2 text-white hover:bg-gray-800 rounded transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+                        Login
+                      </Link>
+                      <Link href="/register" className="px-4 py-2 text-white hover:bg-gray-800 rounded transition-colors text-base" onClick={() => setMobileMenuOpen(false)}>
+                        Register
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </nav>
@@ -402,7 +448,7 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-              <Card className="bg-gradient-to-br from-transparent via-gray-800/30 to-transparent backdrop-blur-xl border-gray-600/20 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
+              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/20 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
                 <CardContent className="p-4 md:p-6 lg:p-8">
                   <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
                     <Calendar className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
@@ -413,7 +459,7 @@ export default function LandingPage() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-transparent via-gray-800/30 to-transparent backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
+              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
                 <CardContent className="p-4 md:p-6 lg:p-8">
                   <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
                     <Users className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
@@ -424,7 +470,7 @@ export default function LandingPage() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-transparent via-gray-800/30 to-transparent backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
+              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
                 <CardContent className="p-4 md:p-6 lg:p-8">
                   <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
                     <Ticket className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
@@ -449,7 +495,7 @@ export default function LandingPage() {
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-              <Card className="bg-gradient-to-br from-transparent via-gray-800/30 to-transparent backdrop-blur-xl border-gray-600/20 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
+              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/20 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
                 <CardContent className="p-4 md:p-6 lg:p-8">
                   <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
                     <ArrowRight className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
@@ -460,7 +506,7 @@ export default function LandingPage() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-transparent via-gray-800/30 to-transparent backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
+              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
                 <CardContent className="p-4 md:p-6 lg:p-8">
                   <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
                     <Play className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
@@ -471,7 +517,7 @@ export default function LandingPage() {
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-transparent via-gray-800/30 to-transparent backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
+              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
                 <CardContent className="p-4 md:p-6 lg:p-8">
                   <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
                     <Users className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
