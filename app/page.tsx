@@ -438,45 +438,49 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* What We Do Section - Metallic Cards */}
-        <section className="py-12 lg:py-20 px-4">
+        {/* What We Do Section - Modern Glassmorphism Cards */}
+        <section className="relative py-12 lg:py-20 px-4 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/60 via-blue-900/40 to-black/80 blur-[2px] opacity-0 -z-10" />
           <div className="container mx-auto">
             <div className="text-center mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white mb-4 lg:mb-6">WHAT WE DO</h2>
-              <p className="text-base lg:text-xl text-gray-300 max-w-3xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white mb-4 lg:mb-6 tracking-tight drop-shadow-lg">WHAT WE DO</h2>
+              <p className="text-base lg:text-xl text-gray-200 max-w-3xl mx-auto drop-shadow">
                 Your complete music experience platform. From discovering new artists to organizing massive concerts.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/20 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
-                <CardContent className="p-4 md:p-6 lg:p-8">
-                  <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
-                    <Calendar className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
+              <Card className="relative bg-white/10 backdrop-blur-lg border border-gray-500/30 shadow-2xl rounded-2xl group overflow-hidden hover:scale-[1.03] transition-transform duration-300">
+                <span className="absolute -top-1/2 left-1/2 w-[200%] h-[200%] bg-gradient-to-tr from-purple-400/20 via-blue-400/10 to-transparent animate-shine pointer-events-none" />
+                <CardContent className="p-4 md:p-6 lg:p-8 flex flex-col items-center">
+                  <div className="w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 shadow-lg">
+                    <Calendar className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white" />
                   </div>
                   <h3 className="text-base md:text-lg lg:text-2xl font-bold text-white mb-2 md:mb-3 lg:mb-4">Event Organization</h3>
-                  <p className="text-xs md:text-sm lg:text-base text-gray-300 leading-relaxed">
+                  <p className="text-xs md:text-sm lg:text-base text-gray-200 leading-relaxed text-center">
                     Plan and organize concerts, festivals, and live music events with our comprehensive management tools.
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
-                <CardContent className="p-4 md:p-6 lg:p-8">
-                  <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
-                    <Users className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
+              <Card className="relative bg-white/10 backdrop-blur-lg border border-gray-500/30 shadow-2xl rounded-2xl group overflow-hidden hover:scale-[1.03] transition-transform duration-300">
+                <span className="absolute -top-1/2 left-1/2 w-[200%] h-[200%] bg-gradient-to-tr from-purple-400/20 via-blue-400/10 to-transparent animate-shine pointer-events-none" />
+                <CardContent className="p-4 md:p-6 lg:p-8 flex flex-col items-center">
+                  <div className="w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 shadow-lg">
+                    <Users className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white" />
                   </div>
                   <h3 className="text-base md:text-lg lg:text-2xl font-bold text-white mb-2 md:mb-3 lg:mb-4">Artist Connection</h3>
-                  <p className="text-xs md:text-sm lg:text-base text-gray-300 leading-relaxed">
+                  <p className="text-xs md:text-sm lg:text-base text-gray-200 leading-relaxed text-center">
                     Connect talented artists with eager audiences and create meaningful musical experiences together.
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
-                <CardContent className="p-4 md:p-6 lg:p-8">
-                  <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
-                    <Ticket className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
+              <Card className="relative bg-white/10 backdrop-blur-lg border border-gray-500/30 shadow-2xl rounded-2xl group overflow-hidden hover:scale-[1.03] transition-transform duration-300">
+                <span className="absolute -top-1/2 left-1/2 w-[200%] h-[200%] bg-gradient-to-tr from-purple-400/20 via-blue-400/10 to-transparent animate-shine pointer-events-none" />
+                <CardContent className="p-4 md:p-6 lg:p-8 flex flex-col items-center">
+                  <div className="w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 shadow-lg">
+                    <Ticket className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white" />
                   </div>
                   <h3 className="text-base md:text-lg lg:text-2xl font-bold text-white mb-2 md:mb-3 lg:mb-4">Ticket Sales</h3>
-                  <p className="text-xs md:text-sm lg:text-base text-gray-300 leading-relaxed">
+                  <p className="text-xs md:text-sm lg:text-base text-gray-200 leading-relaxed text-center">
                     Seamless ticket purchasing experience with secure payments and instant confirmations.
                   </p>
                 </CardContent>
@@ -485,45 +489,49 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Why Concert Circle Section - Metallic Cards */}
-        <section className="py-12 lg:py-20 px-4">
+        {/* Why Concert Circle Section - Modern Glassmorphism Cards */}
+        <section className="relative py-12 lg:py-20 px-4 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-purple-900/40 to-black/80 blur-[2px] opacity-0 -z-10" />
           <div className="container mx-auto">
             <div className="text-center mb-12 lg:mb-16">
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white mb-4 lg:mb-6">WHY CONCERT CIRCLE</h2>
-              <p className="text-base lg:text-xl text-gray-300 max-w-3xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-white mb-4 lg:mb-6 tracking-tight drop-shadow-lg">WHY CONCERT CIRCLE</h2>
+              <p className="text-base lg:text-xl text-gray-200 max-w-3xl mx-auto drop-shadow">
                 Discover what makes us the best choice for artists, fans, and event organizers.
               </p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
-              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/20 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
-                <CardContent className="p-4 md:p-6 lg:p-8">
-                  <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
-                    <ArrowRight className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
+              <Card className="relative bg-white/10 backdrop-blur-lg border border-gray-500/30 shadow-2xl rounded-2xl group overflow-hidden hover:scale-[1.03] transition-transform duration-300">
+                <span className="absolute -top-1/2 left-1/2 w-[200%] h-[200%] bg-gradient-to-tr from-blue-400/20 via-purple-400/10 to-transparent animate-shine pointer-events-none" />
+                <CardContent className="p-4 md:p-6 lg:p-8 flex flex-col items-center">
+                  <div className="w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 shadow-lg">
+                    <ArrowRight className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white" />
                   </div>
                   <h3 className="text-base md:text-lg lg:text-2xl font-bold text-white mb-2 md:mb-3 lg:mb-4">Fast & Easy Access</h3>
-                  <p className="text-xs md:text-sm lg:text-base text-gray-300 leading-relaxed">
+                  <p className="text-xs md:text-sm lg:text-base text-gray-200 leading-relaxed text-center">
                     Instantly discover, book, and manage events with a seamless, user-friendly platform.
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
-                <CardContent className="p-4 md:p-6 lg:p-8">
-                  <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
-                    <Play className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
+              <Card className="relative bg-white/10 backdrop-blur-lg border border-gray-500/30 shadow-2xl rounded-2xl group overflow-hidden hover:scale-[1.03] transition-transform duration-300">
+                <span className="absolute -top-1/2 left-1/2 w-[200%] h-[200%] bg-gradient-to-tr from-blue-400/20 via-purple-400/10 to-transparent animate-shine pointer-events-none" />
+                <CardContent className="p-4 md:p-6 lg:p-8 flex flex-col items-center">
+                  <div className="w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 shadow-lg">
+                    <Play className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white" />
                   </div>
                   <h3 className="text-base md:text-lg lg:text-2xl font-bold text-white mb-2 md:mb-3 lg:mb-4">Live Streaming</h3>
-                  <p className="text-xs md:text-sm lg:text-base text-gray-300 leading-relaxed">
+                  <p className="text-xs md:text-sm lg:text-base text-gray-200 leading-relaxed text-center">
                     Enjoy high-quality live streams of concerts and events from anywhere in the world.
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-gradient-to-br from-gray-800/40 to-gray-900/60 backdrop-blur-xl border-gray-600/30 shadow-2xl hover:shadow-3xl transition-all duration-300 group metallic-card">
-                <CardContent className="p-4 md:p-6 lg:p-8">
-                  <div className="w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 group-hover:scale-110 transition-transform shadow-lg metallic-shine">
-                    <Users className="w-5 h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 text-white" />
+              <Card className="relative bg-white/10 backdrop-blur-lg border border-gray-500/30 shadow-2xl rounded-2xl group overflow-hidden hover:scale-[1.03] transition-transform duration-300">
+                <span className="absolute -top-1/2 left-1/2 w-[200%] h-[200%] bg-gradient-to-tr from-blue-400/20 via-purple-400/10 to-transparent animate-shine pointer-events-none" />
+                <CardContent className="p-4 md:p-6 lg:p-8 flex flex-col items-center">
+                  <div className="w-10 h-10 md:w-14 md:h-14 lg:w-20 lg:h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mb-3 md:mb-4 lg:mb-6 shadow-lg">
+                    <Users className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-white" />
                   </div>
                   <h3 className="text-base md:text-lg lg:text-2xl font-bold text-white mb-2 md:mb-3 lg:mb-4">Community & Support</h3>
-                  <p className="text-xs md:text-sm lg:text-base text-gray-300 leading-relaxed">
+                  <p className="text-xs md:text-sm lg:text-base text-gray-200 leading-relaxed text-center">
                     Join a vibrant community with 24/7 support for artists, fans, and organizers.
                   </p>
                 </CardContent>
