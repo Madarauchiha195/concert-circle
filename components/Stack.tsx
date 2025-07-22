@@ -106,6 +106,19 @@ export default function Stack({
 
   const [dimensions, setDimensions] = useState(cardDimensions)
 
+  // --- NEW: Store random rotations in state ---
+  const [randomRotations, setRandomRotations] = useState<number[]>([])
+
+  // Generate random rotations on mount or when cards change
+  useEffect(() => {
+    if (randomRotation) {
+      setRandomRotations(cards.map(() => Math.random() * 10 - 5))
+    } else {
+      setRandomRotations(cards.map(() => 0))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cards.length, randomRotation])
+
   // Responsive dimensions
   useEffect(() => {
     const updateDimensions = () => {
@@ -131,7 +144,17 @@ export default function Stack({
       newCards.unshift(card)
       return newCards
     })
+    // Also rotate the randomRotations array to match the new card order
+    setRandomRotations((prev) => {
+      const newRots = [...prev]
+      const [rot] = newRots.splice(cards.findIndex((c) => c.id === id), 1)
+      newRots.unshift(rot)
+      return newRots
+    })
   }
+
+  // Wait for randomRotations to be ready
+  if (randomRotations.length !== cards.length) return null
 
   return (
     <div
@@ -143,7 +166,7 @@ export default function Stack({
       }}
     >
       {cards.map((card, index) => {
-        const randomRotate = randomRotation ? Math.random() * 10 - 5 : 0
+        const randomRotate = randomRotations[index] || 0
 
         return (
           <CardRotate key={card.id} onSendToBack={() => sendToBack(card.id)} sensitivity={sensitivity}>
